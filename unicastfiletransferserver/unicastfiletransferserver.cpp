@@ -31,7 +31,7 @@ void FileServer::readClient()
         QString header(line);
         QStringList p = header.split("|");
 
-        if(p.size() < 8)
+        if(p.size() < 11)
         {
             qDebug() << "HEADER ERROR";
             return;
@@ -46,6 +46,10 @@ void FileServer::readClient()
         session->fileSize = p[6].trimmed().toLongLong();
 
         bool overwrite = p[7].trimmed() == "1";
+
+        session->altFilename = p[8];
+        session->purpose     = p[9];
+        session->username    = p[10].trimmed();
 
         QDir().mkpath(savePath);
 
@@ -108,11 +112,13 @@ void FileServer::readClient()
     if(session->received >= session->fileSize)
     {
         session->file.close();
-
         emit transferCompleted(
             session->sender,
             session->receiver,
-            session->filename);
+            session->filename,
+            session->altFilename,
+            session->purpose,
+            session->username);
 
         QString ack =
         QString("DONE|%1\n").arg(session->transferId);

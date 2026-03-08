@@ -16,8 +16,10 @@ public:
 signals:
     void transferCompleted(QString sender,
                            QString receiver,
-                           QString filename);
-
+                           QString filename,
+                           QString altFilename,
+                           QString purpose,
+                           QString username);
 protected:
     void incomingConnection(qintptr socketDescriptor) override;
 

@@ -20,7 +20,10 @@ void FileClient::connectToServer(QString ip, quint16 port)
 void FileClient::sendFile(QString filePath,
                           QString receiver,
                           QString savePath,
-                          bool overwrite)
+                          bool overwrite,
+                          QString altName,
+                          QString purpose,
+                          QString username)
 {
     QFile file(filePath);
 
@@ -35,14 +38,17 @@ void FileClient::sendFile(QString filePath,
     currentSender = socket.localAddress().toString();
 
     QString header =
-    QString("FILE|%1|%2|%3|%4|%5|%6|%7\n")
+    QString("FILE|%1|%2|%3|%4|%5|%6|%7|%8|%9|%10\n")
         .arg(currentTransferId)
         .arg(currentSender)
         .arg(receiver)
         .arg(savePath)
         .arg(info.fileName())
         .arg(file.size())
-        .arg(overwrite ? "1" : "0");
+        .arg(overwrite ? "1":"0")
+        .arg(altName)
+        .arg(purpose)
+        .arg(username);
 
     socket.write(header.toUtf8());
 

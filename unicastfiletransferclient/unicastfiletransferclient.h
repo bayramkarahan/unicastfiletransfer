@@ -17,8 +17,10 @@ public:
     void sendFile(QString filePath,
                   QString receiver,
                   QString savePath,
-                  bool overwrite);
-
+                  bool overwrite,
+                  QString altName,
+                  QString purpose,
+                  QString username);
 signals:
 
 

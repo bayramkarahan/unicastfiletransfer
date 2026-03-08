@@ -11,7 +11,12 @@ int main(int argc, char *argv[])
     {
         client.sendFile(
         "/home/etapadmin/ab.deb",
-        "192.168.1.100","/tmp",false);
+        "deneme",
+        "/tmp",
+        true,
+        "b.txt",
+        "desktopfile",
+        "karahan");
     });
 
     QObject::connect(&client,

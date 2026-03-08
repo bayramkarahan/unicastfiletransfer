@@ -14,7 +14,6 @@ SOURCES += \
     unicastfiletransferclient.cpp
 
 HEADERS += \
-    protocol.h \
     unicastfiletransferclient.h
 
 # Default rules for deployment.

@@ -15,7 +15,6 @@ SOURCES += \
     unicastfiletransferserver.cpp
 
 HEADERS += \
-    protocol.h \
     transfersession.h \
     unicastfiletransferserver.h
 

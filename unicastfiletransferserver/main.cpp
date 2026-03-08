@@ -16,11 +16,22 @@ int main(int argc, char *argv[])
        qDebug()<<"Server çalışıyor";
 
        QObject::connect(&server,&FileServer::transferCompleted,
-       [](QString sender, QString receiver, QString file)
+       [](QString sender,
+          QString receiver,
+          QString file,
+          QString altFile,
+          QString purpose,
+          QString user)
        {
-           qDebug()<<"Transfer:"
-                   <<sender<<"->"<<receiver
-                   <<file;
+           qDebug()
+           << sender
+           << "->"
+           << receiver
+           << file
+           << "alt:" << altFile
+           << "purpose:" << purpose
+           << "user:" << user;
        });
+
          return a.exec();
 }
